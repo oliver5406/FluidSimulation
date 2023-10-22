@@ -1,0 +1,78 @@
+//Change this so that the task does a make command with the make command linking to a CMakeLists.txt
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "Build Libraries",
+            "type": "shell",
+            "command": "make",
+            "args": ["build-libraries"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+		{
+            "label": "Build Test",
+            "type": "shell",
+            "command": "make",
+            "args": ["build-test"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean-Build All",
+            "type": "shell",
+            "command": "make",
+            "args": ["clean-build-all"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+		// {
+		// 	"type": "shell",
+		// 	"label": "CMake: configure",
+		// 	"command": "cmake",
+		// 	"args": ["-B", "${workspaceFolder}/libraries/build"],
+		// 	"options": {
+		// 		"cwd": "${workspaceFolder}/libraries" //To CMakeLists.txt
+		// 	},
+		// 	"group": {
+        //         "kind": "build",
+        //         "isDefault": true
+        //     },
+		// 	"problemMatcher": [],
+		// 	"detail": "CMake template build task"
+		// },
+		// {
+		// 	"type": "shell",
+		// 	"label": "CMake: build",
+		// 	"command": "cmake",
+		// 	"args": ["--build", "${workspaceFolder}/libraries/build"],
+		// 	"options": {
+		// 		"cwd": "${workspaceFolder}/libraries"
+		// 	},
+		// 	"group": {
+        //         "kind": "build",
+        //         "isDefault": true
+        //     },
+		// 	"problemMatcher": [],
+		// 	"detail": "CMake template build task"
+		// }
+	]
+}

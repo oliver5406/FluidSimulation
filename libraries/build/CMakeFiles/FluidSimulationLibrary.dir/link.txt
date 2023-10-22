@@ -1,0 +1,2 @@
+/usr/bin/ar qc libFluidSimulationLibrary.a CMakeFiles/FluidSimulationLibrary.dir/particle.cpp.o
+/usr/bin/ranlib libFluidSimulationLibrary.a
