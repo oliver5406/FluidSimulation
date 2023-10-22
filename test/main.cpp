@@ -5,23 +5,24 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Particle Example");
 
-    int numParticles = 1;
-    float particleSpacing = 0.5;
+    int numParticles = 12;
+    float particleSpacing = 1;
+    float radius = 10.0;
     std::vector<Particle*> particles;
 
     int particlesPerRow = std::sqrt(numParticles);
     int particlesPerCol = (numParticles - 1) / particlesPerRow + 1;
-    float spacing = 10 * 2 + particleSpacing;
+    float spacing = radius * 2 + particleSpacing;
     
     for (int i = 0; i < numParticles; i++)
     {
         float x = 400 + (i % particlesPerRow - particlesPerRow / (float)2 + (float)0.5) * spacing;
         float y = 300 + (i / particlesPerRow - particlesPerCol / (float)2 + (float)0.5) * spacing;
         std::cout << "PosX: " << x << " PosY: " << y << "\n";
-        // particles.push_back(new Particle(x, y, sf::Color::Red, 10.0, sf::Vector2f(0, 10)));
-        Particle p(400.0, 300.0, sf::Color::Red, 10.0, sf::Vector2f(0, 10));
+        particles.push_back(new Particle(x, y, sf::Color::Red, radius, sf::Vector2f(0, 10)));
     }
 
+    // Particle p(400.0, 300.0, sf::Color::Red, 10.0, sf::Vector2f(0, 10));
 
     sf::Clock clock;
 
@@ -34,14 +35,18 @@ int main() {
         }
 
         float deltaTime = clock.restart().asSeconds();
-        p.Draw(window);
+
         for (Particle* particle : particles) {
-            particle->Draw(window);
             particle->Update(deltaTime);
             particle->ResolveBoundaryCollisions(window);
         }
 
         window.clear();
+
+        for (Particle* particle : particles) {
+            particle->Draw(window);
+        }   
+        
         window.display();
     }
 

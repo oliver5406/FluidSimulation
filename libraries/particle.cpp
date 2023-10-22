@@ -31,7 +31,7 @@ void Particle::ResolveBoundaryCollisions(sf::RenderWindow& window)
     float radius = shape.getRadius();
 
     // std::cout << "PosY: " << m_particlePos.y << "\n";
-    if (m_particlePos.y + radius >= windowHeight || m_particlePos.y - radius <= 0.1)
+    if (m_particlePos.y + radius/2 >= windowHeight || m_particlePos.y - radius <= 0.1)
     {
         m_particleVel.y = -m_particleVel.y * m_dampingCoefficient.y;
         m_particlePos.y = std::max(radius, std::min(static_cast<float>(windowHeight) - radius, m_particlePos.y));
