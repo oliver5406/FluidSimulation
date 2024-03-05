@@ -43,3 +43,30 @@ void Particle::ResolveBoundaryCollisions(sf::RenderWindow& window)
         m_particlePos.x = std::max(radius, std::min(static_cast<float>(windowWidth) - radius, m_particlePos.x));
     }
 }
+
+float Particle::SmoothingParticle(float radius, float dst)
+{
+    float volume = M_PI * std::pow(radius, 8) / 4;
+    float value = std::max(float(0), static_cast<float>(std::pow(radius, 2) - std::pow(dst, 2)));
+    return std::pow(value, 3) / volume;
+}
+
+float Particle::CalculateDensity(std::vector<Particle*> particles)//???\?
+{
+    float density = 0;
+    const float mass = 1;
+
+    for (Particle* p : particles) 
+    {       
+        float dst = std::sqrt((m_particlePos.x-p->m_particlePos.x)+(m_particlePos.y-p->m_particlePos.y));
+        std::cout << "particle X: " << m_particlePos.x <<  "\n";
+        // float dst = (m_particlePos - p->m_particlePos)
+        float influence = SmoothingParticle(smoothingRadius, dst);
+        density += mass * influence;
+        // (m_particlePos - particle->m_particlePos)
+    }
+    
+    std::cout << "Density: " << density << "\n";
+
+    return density;
+}

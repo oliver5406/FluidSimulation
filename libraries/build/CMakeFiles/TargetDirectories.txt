@@ -1,3 +1,0 @@
-/home/odennison/Tutorials/FluidSimulation/libraries/build/CMakeFiles/FluidSimulationLibrary.dir
-/home/odennison/Tutorials/FluidSimulation/libraries/build/CMakeFiles/edit_cache.dir
-/home/odennison/Tutorials/FluidSimulation/libraries/build/CMakeFiles/rebuild_cache.dir

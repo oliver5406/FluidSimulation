@@ -18,7 +18,6 @@ int main() {
     {
         float x = 400 + (i % particlesPerRow - particlesPerRow / (float)2 + (float)0.5) * spacing;
         float y = 300 + (i / particlesPerRow - particlesPerCol / (float)2 + (float)0.5) * spacing;
-        std::cout << "PosX: " << x << " PosY: " << y << "\n";
         particles.push_back(new Particle(x, y, sf::Color::Red, radius, sf::Vector2f(0, 10)));
     }
 
@@ -36,22 +35,28 @@ int main() {
 
         float deltaTime = clock.restart().asSeconds();
 
-        for (Particle* particle : particles) {
-            particle->Update(deltaTime);
-            particle->ResolveBoundaryCollisions(window);
+        for (Particle* p : particles) {
+            int count = 0;
+            p->Update(deltaTime);
+            p->ResolveBoundaryCollisions(window);
+            // if (count != 1)
+            // {
+            //     p->CalculateDensity(particles);
+            // }
+            count += 1;
         }
 
         window.clear();
 
-        for (Particle* particle : particles) {
-            particle->Draw(window);
+        for (Particle* p : particles) {
+            p->Draw(window);
         }   
         
         window.display();
     }
 
-    for (Particle* particle : particles) {
-        delete particle;
+    for (Particle* p : particles) {
+        delete p;
     }
     return 0;
 }
